@@ -1,0 +1,136 @@
+4) Display country name, city, and department name.
+> select loc.country_id, loc.city, dep.department_name from locations loc, departments dep where loc.location_id = dep.location_id ; 
+5) Display employee name and country in which he is working.
+> select loc.country_id, emp.first_name from locations loc, employees emp where emp.department_id = loc.department_id ; 
+
+functinos
+select upper(first_name) from employees;
+select upper(first_name), upper(last_name), concat(first_name,' ',last_name) from employees;
+select upper(first_name), length(first_name) from employees;
+select length(concat(first_name,' ',last_name)) from employees;
+
+select substring(first_name,2,2) from employees;
+select upper('raj deep'),curdate(),sysdate();
+
+	select datediff('2021-01-11','2021-01-05');
+
+	select datediff(curdate(),'2021-01-05');
+
+	select date_format(curdate(),'%d-%m-%y');
+	
+select ceil(10.1),ceil(10.9),floor(10.1),floor(10.9);
+
+select round(2356.4578,2);
+select round(2356.4578,-2);
+select truncate(2356.4578,2)
+
+
+     
+	
+    select sum(salary) as TotalSalary from employees;
+
+    select avg(salary) as AvgSalary,max(salary) as MaxSalary,min(salary) as MinSalary from employees;
+
+select count(commission_pct),count(manager_id),count(employee_id) from employees;
+
+
+select count(*), count(employee_id) from employees;
+	
+	
+	select sum(salary) from employees group by department_id;
+
+
+select department_id,sum(salary) from employees group by department_id;
+
+
+select department_id,sum(salary) from employees where department_id is not null group by department_id having sum(salary) > 50000 order by department_id desc;
+
+
+
+
+dml operation in mysql
+DML Operation 
+
+1. Change salary of employee 115 to 8000 if the existing salary is less than 6000.
+
+2. Insert a new employee into employees with all the required details.
+
+3. Delete department 20.
+
+4. Change job ID of employee 110 to IT_PROG if the employee belongs to department 10 and the existing job ID does not start with IT.
+
+5. Insert a row into departments table with manager ID 120 and location ID in any location ID for city Tokyo.
+
+6. Display job title, employee ID, number of days between ending date and starting date for all jobs in department 30 from job history.
+
+1> UPDATE employees SET SALARY = 8000 WHERE employee_id = 115 AND salary < 6000;
+
+3>DELETE * from department;
+
+4> UPDATE employees SET JOB_ID= 'IT_PROG' 
+WHERE employee_id=110
+AND department_id=10
+AND NOT JOB_ID LIKE 'IT%';
+
+5> INSERT INTO DEPARTMENTS (150,'SPORTS',120,1200)
+
+6> SELECT EMPLOYEE_ID, JOB_TITLE, END_DATE-START_DATE DAYS 
+FROM JOB_HISTORY NATURAL JOIN JOBS 
+WHERE DEPARTMENT_ID=30
+
+ddl 
+
+
+Sub Query 
+
+1. Display details of departments managed by ‘John’.
+
+2. Display employees who did not do any job in the past.
+
+3. Display job title and average salary for employees who did a job in the past.
+
+4. Display country name, city, and number of departments where department has more than 5 employees.
+
+5. Display details of manager who manages more than 5 employees.
+
+6. Display details of current job for employees who worked as IT Programmers in the past.
+
+7. Display the details of employees drawing the highest salary in the department.
+
+8. Display third highest salary of all employees
+
+1> SELECT * FROM DEPARTMENTS WHERE MANAGER_ID IN 
+  (SELECT EMPLOYEE_ID FROM EMPLOYEES WHERE FIRST_NAME='JOHN');
+  
+2> SELECT * FROM EMPLOYEES WHERE EMPLOYEE_ID NOT IN 
+       (SELECT EMPLOYEE_ID FROM JOB_HISTORY)
+       
+3> SELECT JOB_TITLE, AVG(SALARY) FROM JOBS NATURAL JOIN EMPLOYEES 
+GROUP BY JOB_TITLE 
+WHERE EMPLOYEE_ID IN
+    (SELECT EMPLOYEE_ID FROM JOB_HISTORY) ;
+    
+5> SELECT COUNTRY_NAME, CITY, COUNT(DEPARTMENT_ID)
+FROM COUNTRIES JOIN LOCATIONS USING (COUNTRY_ID) JOIN DEPARTMENTS USING (LOCATION_ID) 
+WHERE DEPARTMENT_ID IN 
+    (SELECT DEPARTMENT_ID FROM EMPLOYEES 
+	 GROUP BY DEPARTMENT_ID 
+	 HAVING COUNT(DEPARTMENT_ID)>5)
+GROUP BY COUNTRY_NAME, CITY;
+
+
+6>
+SELECT * FROM JOBS 
+WHERE JOB_ID IN 
+ (SELECT JOB_ID FROM EMPLOYEES WHERE EMPLOYEE_ID IN 
+        (SELECT EMPLOYEE_ID FROM JOB_HISTORY WHERE JOB_ID='IT_PROG'));
+        
+7>
+SELECT DEPARTMENT_ID,FIRST_NAME, SALARY FROM EMPLOYEES OUTER WHERE SALARY = 
+    (SELECT MAX(SALARY) FROM EMPLOYEES WHERE DEPARTMENT_ID = OUTER.DEPARTMENT_ID);
+    
+8> select salary 
+from employees main
+where  2 = (select count( distinct salary ) 
+            from employees
+            where  salary > main.salary);                       
