@@ -1,0 +1,58 @@
+assignment 3
+
+
+import java.util.Scanner;
+ 
+public class Employee {
+ 
+ int empid;
+ String name;
+ float salary;
+ string desg;
+ 
+ public void read() {
+ 
+  Scanner in = new Scanner(System.in);
+  System.out.print("Enter the empid :: ");
+  empid = in.nextInt();
+  System.out.print("Enter the name :: ");
+  name = in.next();
+  System.out.print("Enter the salary :: ");
+  salary = in.nextFloat();
+  System.out.print("Enter the designation :: ");
+  desg = in.next();
+ }
+ 
+ public void display() {
+ 
+ salary= 0.1*salary + 0.07*salary + 0.05*salary;
+
+if(desg.equals("manager"))  Sytem.out.println(salary+0.15*salary);
+else if(desg.equals("developer")) Sytem.out.println(salary+0.1*salary);
+else  Sytem.out.println(salary+0.05*salary);
+  
+  System.out.println("Employee id = " + empid);
+  System.out.println("Employee name = " + name);
+  System.out.println("Employee salary = " + salary);
+ }
+ 
+ public static void main(String[] args) {
+ 
+  Employee e[] = new Employee[5];
+  
+  for(int i=0; i<5; i++) {
+   
+   e[i] = new Employee();
+   e[i].getInput();
+  }
+  
+  System.out.println("**** Data Entered as below ****");
+  
+  for(int i=0; i<5; i++) {
+   
+   e[i].display();
+  }
+ }
+}
+
+
