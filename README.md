@@ -1,5 +1,5 @@
-# zensar_mysql
-zensar assignments
+# zensar assignments
+
 
 
 java assignment 1 completed
