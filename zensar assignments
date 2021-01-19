@@ -1,7 +1,4 @@
-4) Display country name, city, and department name.
-> select loc.country_id, loc.city, dep.department_name from locations loc, departments dep where loc.location_id = dep.location_id ; 
-5) Display employee name and country in which he is working.
-> select loc.country_id, emp.first_name from locations loc, employees emp where emp.department_id = loc.department_id ; 
+
 
 functinos
 select upper(first_name) from employees;
@@ -17,31 +14,19 @@ select upper('raj deep'),curdate(),sysdate();
 	select datediff(curdate(),'2021-01-05');
 
 	select date_format(curdate(),'%d-%m-%y');
-	
-select ceil(10.1),ceil(10.9),floor(10.1),floor(10.9);
+select employee_id, concat(first_name,' ',last_name) as Full_Name, salary as Basic_Salary, salary*.7 PF, salary*.10 HRA, salary*.5 DA, salary + salary*.10 + salary*.5 - salary*.7 Gross_Salary from employees;
 
-select round(2356.4578,2);
-select round(2356.4578,-2);
-select truncate(2356.4578,2)
+select first_name,salary,hire_date from employees where hire_date between '1990-01-01' AND '1995-01-01';
 
+select emp.first_name,dept.department_name,loc.city from employees emp, departments dept, locations loc where emp.department_id = dept.department_id and dept.location_id = loc.location_id;
 
-     
-	
-    select sum(salary) as TotalSalary from employees;
+select emp.first_name,dept.department_name,loc.city from employees emp inner join departments dept inner join locations loc on emp.department_id = dept.department_id and dept.location_id = loc.location_id;
 
-    select avg(salary) as AvgSalary,max(salary) as MaxSalary,min(salary) as MinSalary from employees;
+select job_id from jobs where min_salary > 2000 and max_salary < 10000;
 
-select count(commission_pct),count(manager_id),count(employee_id) from employees;
+SELECT e.department_id, e.first_name, e.job_id , d.department_name FROM employees e , departments d WHERE e.department_id = d.department_id AND d.department_name = 'Finance';
 
-
-select count(*), count(employee_id) from employees;
-	
-	
-	select sum(salary) from employees group by department_id;
-
-
-select department_id,sum(salary) from employees group by department_id;
-
+select first_name, salary from employees where salary>(select avg(salary) from employees where department_id=60 and (select department_id from departments where department_name like 'finance'));
 
 select department_id,sum(salary) from employees where department_id is not null group by department_id having sum(salary) > 50000 order by department_id desc;
 
