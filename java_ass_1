@@ -1,0 +1,89 @@
+assignment 1
+
+import java.util.*;
+
+Class onlineexam {
+public static void main(String args[]) {
+Scanner obj = new Scanner(System.in());
+int ch , result = 0 , f=0, fm=0, fe= 0, fg = 0;
+System.out.println("enter your choice");
+System.out.println("enter your answer in 1 o 0");
+ch = obj.nextInt();
+
+do {
+switch(ch) {
+
+case 1: 
+  if(fe != 1) {
+  System.out.println("Verb has three tenses");
+  int e1 = obj.nextInt();
+  if(e1 == 1) result += 10;
+  
+  System.out.println("Synonym of consise is brief");
+  int e2 = obj.nextInt();
+  if(e2 == 1) result += 10;
+  
+  System.out.println("antonym of tall is short");
+  int e3 = obj.nextInt();
+  if(e3 == 1) result += 10;
+  }
+  break;
+  
+case 2: 
+  if(fm != 1) {
+  System.out.println("2+2 = 4");
+  int m1 = obj.nextInt();
+  if(m1 == 1) result += 10;
+  
+  System.out.println("2*3 = 6");
+  int m2 = obj.nextInt();
+  if(m2 == 1) result += 10;
+  
+  System.out.println("10/5 = 2");
+  int m3 = obj.nextInt();
+  if(m3 == 1) result += 10;
+  }  
+  break;
+  
+  case 3: 
+  if(fg != 1) {
+  System.out.println("Tallest tower is eiffel tower");
+  int g1 = obj.nextInt();
+  if(g1 == 1) result += 10;
+  
+  System.out.println("Largest ocean is Pacific Ocean");
+  int g2 = obj.nextInt();
+  if(g2 == 1) result += 10;
+  
+  System.out.println("Richest guy is bill gates");
+  int g3 = obj.nextInt();
+  if(g3 == 1) result += 10;
+  }  
+  break;
+  
+  default: System.out.println("wrong choice");
+  
+  System.out.println("Do you want to continue?");
+  String s = obj.next();
+         
+  if(s == "YES") f = 1;
+  else f = 0;
+   
+ 
+  }while(f ! = 1);
+  
+  if(result > 70) {
+  result += 10;
+  System.out.println("good");
+  }
+  else if(result > 90) {
+   System.out.println("excellent");
+  }
+  else   {
+  System.out.println("try next time");
+  }
+  }
+  }
+  
+  
+
