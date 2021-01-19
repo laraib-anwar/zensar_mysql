@@ -27,7 +27,7 @@ class Employee{
 	  }
 
 	  System.out.println("Employee Details are : \n");
-  	  for(int i = 0; i <n; i++) 
+  	  for(int i = 0; i <n; i++)  
  	  {
      	System.out.println("Employee Id = " +id[i]);
 	    System.out.println("Employee Name = " +name[i]);
