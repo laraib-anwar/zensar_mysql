@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="cal.css"> 
+    <title>Calculator</title>
+    <script>
+        function showresult(choice){
+            var no1 = parseFloat(document.getElementById('num1').value);
+            var no2 = parseFloat(document.getElementById('num2').value);
+            var result;
+            var c = choice;
+        
+
+    switch(c)
+	    {
+	        case '1':
+		    result=no1+no2;
+		    break;
+            
+            case '2':
+		    result=no1-no2;
+            break;
+            
+           
+	
+	        default:
+		    break;
+			
+        }
+        
+        document.getElementById('result').value=result;
+   }
+</script>
+</head>
+<body>
+    <div class="center">
+    <h1>My Calculator</h1>
+    
+    
+    <h3>First Number :</h3>
+    <input name="number1" type="text" size=10 id='num1'/><br>
+    <h3>Second Number :</h3>
+    <input name="number2" type="text" size=10 id='num2'/><br>
+    <br>
+
+    <button onclick="showresult('1')">+</button>
+    <button onclick="showresult('2')">-</button>
+    
+    <h3>Result :</h3>
+    <input type="text" id='result' ></br>
+    
+    </div>
+    </body>
+</html>
